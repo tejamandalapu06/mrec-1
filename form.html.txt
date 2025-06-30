@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+</head>
+<body>
+
+  <h2>Simple Form</h2>
+
+  <form onsubmit="return validateForm()">
+    Name: <input type="text" id="name"><br><br>
+    Email: <input type="text" id="email"><br><br>
+    Age: <input type="text" id="age"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let age = document.getElementById("age").value.trim();
+
+      if (name === "" || email === "" || age === "") {
+        alert("All fields are required.");
+        return false;
+      }
+
+      // Simple email pattern
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email.");
+        return false;
+      }
+
+      age = Number(age);
+      if (isNaN(age) || age < 1 || age > 120) {
+        alert("Please enter a valid age between 1 and 120.");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
